@@ -87,7 +87,6 @@ router.get('/api/my-dogs', async (req, res) => {
   }
 });
 //GET /api/users/me
-// GET /api/users/me - return current logged-in user's ID and username
 router.get('/api/users/me', (req, res) => {
   if (!req.session.user) {
     return res.status(401).send('Not logged in');
