@@ -25,7 +25,8 @@
           <div class="mb-3">
             <!--dog seletct part-->
             <label for="dogSelect">Select Your Dog</label>
-            <select id="dogSelect" name="dog_id" class="form-select" required>
+            <select id="dogSelect" name="dog_id" class="form-select" v-model="form.dog_id" required>
+
               <option value="">-- Choose a dog --</option>
             </select>
 
