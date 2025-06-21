@@ -35,7 +35,7 @@ router.get('/me', (req, res) => {
   res.json(req.session.user);
 });
 
-// POST login (dummy version)
+// POST login (done version)
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
   console.log('Attempting login with:', username, password);
