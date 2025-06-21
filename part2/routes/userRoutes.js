@@ -67,6 +67,7 @@ router.get('/logout', (req, res) => {
   });
 });
 
+//GET /api/my-dogs
 router.get('/api/my-dogs', async (req, res) => {
   if (!req.session.user || req.session.user.role !== 'owner') {
     return res.status(403).send('Not authorized');
