@@ -38,7 +38,6 @@ router.get('/me', (req, res) => {
 // POST login (done version)
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
-  console.log('Attempting login with:', username, password);
   const [rows] = await db.query(
     'SELECT * FROM Users WHERE username = ? AND password_hash = ?',
     [username, password]
