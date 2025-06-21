@@ -57,28 +57,28 @@
     const { createApp, ref, onMounted } = Vue;
 
     createApp({
-    setup() {
-      const message = ref('Welcome to the Dog Walking Service!');
-      const dogs = ref([]);
+      setup() {
+        const message = ref('Welcome to the Dog Walking Service!');
+        const dogs = ref([]);
 
-      async function fetchImage() {
-        try {
-          const res = await fetch('https://dog.ceo/api/breeds/image/random');
-          const data = await res.json();
-          return data.message;
-        } catch {
-          return 'https://via.placeholder.com/80';
-        }
-      }
-
-      async function loadDogs() {
-        try {
-          const res = await fetch('/api/dogs');
-          const dogList = await res.json();
-          for (const dog of dogList) {
-            dog.image = await fetchImage();
+        async function fetchImage() {
+          try {
+            const res = await fetch('https://dog.ceo/api/breeds/image/random');
+            const data = await res.json();
+            return data.message;
+          } catch {
+            return 'https://via.placeholder.com/80';
           }
-          dogs.value = dogList;
+        }
+
+        async function loadDogs() {
+          try {
+            const res = await fetch('/api/dogs');
+            const dogList = await res.json();
+            for (const dog of dogList) {
+              dog.image = await fetchImage();
+            }
+            dogs.value = dogList;
         } catch (err) {
           console.error('Failed to load dogs:', err);
         }
