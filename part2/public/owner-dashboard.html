@@ -138,5 +138,26 @@
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', async () => {
+      const select = document.getElementById('dogSelect');
+
+    try {
+      const res = await fetch('/api/my-dogs');
+      const dogs = await res.json();
+
+      dogs.forEach(dog => {
+        const option = document.createElement('option');
+        option.value = dog.dog_id;
+        option.textContent = dog.name;
+        select.appendChild(option);
+      });
+    } catch (err) {
+      console.error('Failed to load dogs:', err);
+    }
+  });
+</script>
+
 </body>
 </html>
