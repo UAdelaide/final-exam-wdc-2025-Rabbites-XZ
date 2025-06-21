@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../modles/db');  // ✅ reused part1 database connection
+const db = require('../modles/db');
 
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
