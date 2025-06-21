@@ -86,6 +86,16 @@ router.get('/api/my-dogs', async (req, res) => {
     res.status(500).send('Server error');
   }
 });
+//GET /api/users/me
+// GET /api/users/me - return current logged-in user's ID and username
+router.get('/api/users/me', (req, res) => {
+  if (!req.session.user) {
+    return res.status(401).send('Not logged in');
+  }
+
+  const { user_id, username, role } = req.session.user;
+  res.json({ user_id, username, role });
+});
 
 
 
