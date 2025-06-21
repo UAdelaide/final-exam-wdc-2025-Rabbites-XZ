@@ -13,21 +13,26 @@
     <h1 class="mb-4 text-primary">{{ message }}</h1>
     <p class="lead">Connect with trusted walkers for your beloved dog!</p>
     <!-----Login part---->
-    <form action="/login" method="POST">
-      <div>
-        <label for="username">Username</label><br />
-        <input type="text" id="username" name="username" required />
-      </div>
-      <div>
-        <label for="password">Password</label><br />
-        <input type="password" id="password" name="password" required />
-      </div>
-      <div>
-        <button type="submit">Log In</button>
-      </div>
-    </form>
+    <form action="/login" method="POST" class="p-4 bg-white rounded shadow-sm mt-4" style="max-width: 400px; margin: auto;">
+  <h1 class="text-primary mb-4 text-center fw-bold">Welcome to the Dog Walking Service!</h1>
 
-    <!--can be removed after -->>
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input type="text" id="username" name="username" class="form-control bg-warning-subtle" required />
+  </div>
+
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" id="password" name="password" class="form-control bg-warning-subtle" required />
+  </div>
+
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary px-4">Log In</button>
+  </div>
+</form>
+
+
+    <!--can be removed in future run-->
     <a href="owner-dashboard.html" class="btn btn-outline-primary me-2">Owner Dashboard</a>
     <a href="walker-dashboard.html" class="btn btn-outline-success">Walker Dashboard</a>
 
