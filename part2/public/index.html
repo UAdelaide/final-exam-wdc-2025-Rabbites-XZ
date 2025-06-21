@@ -10,84 +10,32 @@
 <body class="bg-light">
 
   <div id="app" class="container py-5">
-    <h1 class="mb-4 text-primary">Walking Service!</h1>
+    <h1 class="mb-4 text-primary">{{ message }}</h1>
     <p class="lead">Connect with trusted walkers for your beloved dog!</p>
-
-    <!-- Login form -->
-    <form action="/login" method="POST" class="mb-4" style="max-width: 400px;">
-      <div class="mb-3">
-        <label for="username" class="form-label">Username</label>
-        <input type="text" id="username" name="username" required class="form-control" />
+    <!-----Login part---->
+    <form action="/login" method="POST">
+      <div>
+        <label for="username">Username</label><br />
+        <input type="text" id="username" name="username" required />
       </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" id="password" name="password" required class="form-control" />
+      <div>
+        <label for="password">Password</label><br />
+        <input type="password" id="password" name="password" required />
       </div>
-      <button type="submit" class="btn btn-primary">Log In</button>
+      <div>
+        <button type="submit">Log In</button>
+      </div>
     </form>
-
-    <!-- Dog table -->
-    <h2 class="mt-5 mb-3">All Registered Dogs</h2>
-    <table class="table table-bordered table-striped" v-if="dogs.length">
-      <thead>
-        <tr>
-          <th>Dog ID</th>
-          <th>Name</th>
-          <th>Size</th>
-          <th>Owner ID</th>
-          <th>Photo</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="dog in dogs" :key="dog.dog_id">
-          <td>{{ dog.dog_id }}</td>
-          <td>{{ dog.name }}</td>
-          <td>{{ dog.size }}</td>
-          <td>{{ dog.owner_id }}</td>
-          <td><img :src="dog.image" alt="dog photo" style="width: 80px; height: auto;" /></td>
-        </tr>
-      </tbody>
-    </table>
+    <a href="owner-dashboard.html" class="btn btn-outline-primary me-2">Owner Dashboard</a>
+    <a href="walker-dashboard.html" class="btn btn-outline-success">Walker Dashboard</a>
   </div>
 
   <script>
-    const { createApp, ref, onMounted } = Vue;
-
+    const { createApp } = Vue;
     createApp({
-      setup() {
-        const dogs = ref([]);
-
-        async function fetchImage() {
-          try {
-            const res = await fetch('https://dog.ceo/api/breeds/image/random');
-            const data = await res.json();
-            return data.message;
-          } catch {
-            return 'https://via.placeholder.com/80';
-          }
-        }
-
-        async function loadDogs() {
-          try {
-            const res = await fetch('/api/dogs');
-            const dogList = await res.json();
-
-            for (const dog of dogList) {
-              dog.image = await fetchImage();
-            }
-
-            dogs.value = dogList;
-          } catch (err) {
-            console.error('Failed to load dogs:', err);
-          }
-        }
-
-        onMounted(() => {
-          loadDogs();
-        });
-
+      data() {
         return {
-          dogs
+          message: 'Welcome to the Dog Walking Service!'
         };
       }
     }).mount('#app');
