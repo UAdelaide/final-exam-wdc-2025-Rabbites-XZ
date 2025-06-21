@@ -55,7 +55,7 @@
             });
             if (!res.ok) throw new Error('Not logged in');
             const userData = await res.json();
-            currentUser.value = userData; // ✅ stores user
+            currentUser.value = userData;
           } catch (err) {
             console.error('Failed to fetch current user:', err);
             error.value = 'Please log in to apply for a walk.';
@@ -72,18 +72,7 @@
             error.value = err.message;
           }
         }
-        //get user
-        async function getCurrentUser() {
-          try {
-            const res = await fetch('/api/users/me', {
-  credentials: 'include'});
-            if (!res.ok) throw new Error('Not logged in');
-            return await res.json();
-          } catch (err) {
-            console.error('Failed to fetch current user:', err);
-            return null;
-          }
-        }
+        
 
         //new apply to walk
         async function applyToWalk(requestId) {
