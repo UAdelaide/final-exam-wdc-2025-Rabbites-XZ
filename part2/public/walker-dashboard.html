@@ -73,7 +73,8 @@
         //get user
         async function getCurrentUser() {
           try {
-            const res = await fetch('/api/users/me');
+            const res = await fetch('/api/users/me', {
+  credentials: 'include');
             if (!res.ok) throw new Error('Not logged in');
             return await res.json();
           } catch (err) {
