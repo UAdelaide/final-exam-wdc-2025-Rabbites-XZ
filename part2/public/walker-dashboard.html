@@ -58,6 +58,18 @@
           }
         }
 
+        async function getCurrentUser() {
+          try {
+            const res = await fetch('/api/users/me');
+            if (!res.ok) throw new Error('Not logged in');
+    return await res.json();
+  } catch (err) {
+    console.error('Failed to fetch current user:', err);
+    return null;
+  }
+}
+
+
         async function applyToWalk(requestId) {
           try {
             const res = await fetch(`/api/walks/${requestId}/apply`, {
