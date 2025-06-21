@@ -57,8 +57,8 @@
             const userData = await res.json();
             currentUser.value = userData; // ✅ stores user
           } catch (err) {
-           console.error('Failed to fetch current user:', err);
-          error.value = 'Please log in to apply for a walk.';
+            console.error('Failed to fetch current user:', err);
+            error.value = 'Please log in to apply for a walk.';
           }
         }
 
