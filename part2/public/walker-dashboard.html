@@ -46,7 +46,20 @@
         const walks = ref([]);
         const message = ref('');
         const error = ref('');
-        const user = 3;
+        const currentUser = ref(null);
+
+async function getCurrentUser() {
+  try {
+    const res = await fetch('/api/users/me');
+    if (!res.ok) throw new Error('Not logged in');
+    const userData = await res.json();
+    currentUser.value = userData;
+  } catch (err) {
+    console.error('Failed to fetch current user:', err);
+    error.value = 'Please log in to apply for a walk.';
+  }
+}
+
 
         async function loadWalkRequests() {
           try {
