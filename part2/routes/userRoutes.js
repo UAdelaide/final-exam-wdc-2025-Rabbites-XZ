@@ -67,6 +67,25 @@ router.get('/logout', (req, res) => {
   });
 });
 
+router.get('/api/my-dogs', async (req, res) => {
+  if (!req.session.user || req.session.user.role !== 'owner') {
+    return res.status(403).send('Not authorized');
+  }
+
+  const ownerId = req.session.user.user_id;
+
+  try {
+    const [rows] = await db.query(
+      'SELECT dog_id, name FROM Dogs WHERE owner_id = ?',
+      [ownerId]
+    );
+    res.json(rows);
+  } catch (err) {
+    console.error('Failed to fetch dogs:', err);
+    res.status(500).send('Server error');
+  }
+});
+
 
 
 module.exports = router;
