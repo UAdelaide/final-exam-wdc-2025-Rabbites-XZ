@@ -52,6 +52,7 @@ router.post('/login', async (req, res) => {
   } else {
     res.redirect('/walker-dashboard.html');
   }
+  console.log('Attempting login with:', username, password);
 });
 
 
