@@ -38,6 +38,7 @@ router.get('/me', (req, res) => {
 // POST login (dummy version)
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
+  console.log('Attempting login with:', username, password);
   const [rows] = await db.query(
     'SELECT * FROM Users WHERE username = ? AND password_hash = ?',
     [username, password]
@@ -52,7 +53,7 @@ router.post('/login', async (req, res) => {
   } else {
     res.redirect('/walker-dashboard.html');
   }
-  console.log('Attempting login with:', username, password);
+
 });
 
 
